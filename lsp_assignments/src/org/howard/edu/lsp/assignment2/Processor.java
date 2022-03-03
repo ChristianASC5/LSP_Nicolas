@@ -15,7 +15,7 @@ public class Processor {
 			
 			if (tokens[0].equals("Goodbye")) {
 				scanner.close();
-//				System.out.println("Termination key recieved");
+//				System.out.println("Termination key received");
 				break;
 			}
 			
@@ -32,7 +32,9 @@ public class Processor {
 			System.out.println("Product: " + String.valueOf(product));
 			
 			System.out.println();
+			
 		}
+		
 		
 	}
 
