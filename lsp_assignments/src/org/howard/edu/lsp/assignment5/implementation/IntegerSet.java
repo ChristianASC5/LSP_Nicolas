@@ -1,6 +1,7 @@
 package org.howard.edu.lsp.assignment5.implementation;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 //class IntegerSetException extends Exception {
 //    public IntegerSetException(String s)
@@ -12,15 +13,16 @@ import java.util.ArrayList;
 
 public class IntegerSet {
 	
-	private ArrayList<Integer> set = new ArrayList<Integer>();
+	private ArrayList<Integer> set;
 	
 	/**
 	 * 
 	 * This is the default constructor for an IntegerSet object
 	 * 
+	 * Initializes set attribute
 	 */
 	public IntegerSet() {
-	
+		set = new ArrayList<Integer>();
 	}
 	
 	/**
@@ -42,12 +44,32 @@ public class IntegerSet {
 	}
 	
 	 
+	/**
+	 * 
+	 * Returns true if the 2 sets are equal, false otherwise; 
+	 * Two sets are equal if they contain all of the same values in ANY order.
+	 * 
+	 * @param b
+	 * 
+	 */
 	public boolean equals(IntegerSet b) {
-		return false;
+		if (length() != b.length()){
+			return false;
+		} 
+		else {
+			for (int i : set) {
+				if (b.contains(i) == false) {
+					return false;
+				}
+			}
+		}
+		
+		return true;
+		
 	}
 	
 	public boolean contains(int value) {
-		return false;
+		return (Collections.binarySearch(set, value) != -1);
 	}
 	
 	public int largest() throws IntegerSetException {
