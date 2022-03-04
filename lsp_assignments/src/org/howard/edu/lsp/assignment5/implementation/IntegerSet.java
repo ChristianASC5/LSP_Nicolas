@@ -32,7 +32,7 @@ public class IntegerSet {
 	
 	/**
 	 * Returns the length of the set
-	 * @return the length of the set
+	 * @return the length of this IntegerSet
 	 */
 	public int length() {
 		return this.set.size();
@@ -64,12 +64,17 @@ public class IntegerSet {
 	/**
 	 * Returns true if the set contains the value, otherwise false
 	 * @param value
-	 * @return
+	 * @return true if this IntegerSet contains the value, otherwise false
 	 */
 	public boolean contains(int value) {
-		return (Collections.binarySearch(this.set, value) != -1);
+		return this.set.contains(value);
 	}
 	
+	/**
+	 * Returns the largest item in the set
+	 * @return the largest value in this IntegerSet
+	 * @throws IntegerSetException
+	 */
 	public int largest() throws IntegerSetException {
 		if (this.length() > 0) {
 			return Collections.max(this.set);
@@ -79,6 +84,11 @@ public class IntegerSet {
 		}
 	}
 	
+	/**
+	 * Returns the smallest item in the set
+	 * @return the smallest value in this IntegerSet
+	 * @throws IntegerSetException
+	 */
 	public int smallest() throws IntegerSetException {
 		if (this.length() > 0) {
 			return Collections.min(this.set);
@@ -87,4 +97,62 @@ public class IntegerSet {
 			throw new IntegerSetException("this IntegerSet is empty");
 		}
 	}
+	
+	public void add(int item) {
+		if (this.contains(item) == false) {
+			this.set.add(item);
+		}
+	}
+	
+	public void remove(int item) throws IntegerSetException {
+		if (this.contains(item) == true) {
+			this.set.remove(item);
+		}
+		else {
+			throw new IntegerSetException("this set is empty");
+		}
+	}
+	
+	public void union(IntegerSet b) {
+		if (this.equals(b) == false) {
+			try {	
+				for (int val = b.smallest(); val <= b.largest(); val++) {
+					if (b.contains(val)) {
+						this.add(val);
+					}
+				}
+			}
+			catch (IntegerSetException ex) {
+				System.out.println("Exception caught: " + ex);
+			}
+			
+		}
+	}
+	
+	public void intersection(IntegerSet b) {
+		if (this.equals(b) == false) {
+			try {
+				for (int val = this.smallest(); val <= this.largest(); val++) {
+					if ((this.contains(val) && b.contains(val)) == false) {
+						this.remove(val);
+					}
+				}
+			}
+			catch (IntegerSetException ex) {
+				System.out.println("Exception caught: " + ex);
+			}
+			
+		}
+	}
+	
+	public void diff(IntegerSet b) {
+		if (this.equals(b)) {
+			this.clear();
+		}
+		else {
+			
+		}
+	}
+	
+	
 }
