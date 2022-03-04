@@ -20,22 +20,22 @@ public class IntegerSet {
 	 * Initializes set attribute
 	 */
 	public IntegerSet() {
-		set = new ArrayList<Integer>();
+		this.set = new ArrayList<Integer>();
 	}
 	
 	/**
 	 * Clears internal representation of the set
 	 */
 	public void clear() {
-		set.clear();
+		this.set.clear();
 	}
 	
 	/**
 	 * Returns the length of the set
-	 * @return
+	 * @return the length of the set
 	 */
 	public int length() {
-		return set.size();
+		return this.set.size();
 	}
 	
 	 
@@ -48,11 +48,11 @@ public class IntegerSet {
 	 * @return true if this IntegerSet is equal to IntegerSet b, false otherwise
 	 */
 	public boolean equals(IntegerSet b) {
-		if (length() != b.length()){
+		if (this.length() != b.length()){
 			return false;
 		} 
 		else {
-			for (int i : set) {
+			for (int i : this.set) {
 				if (b.contains(i) == false) {
 					return false;
 				}
@@ -67,14 +67,24 @@ public class IntegerSet {
 	 * @return
 	 */
 	public boolean contains(int value) {
-		return (Collections.binarySearch(set, value) != -1);
+		return (Collections.binarySearch(this.set, value) != -1);
 	}
 	
 	public int largest() throws IntegerSetException {
-		return 0;
+		if (this.length() > 0) {
+			return Collections.max(this.set);
+		}
+		else {
+			throw new IntegerSetException("this IntegerSet is empty");
+		}
 	}
 	
 	public int smallest() throws IntegerSetException {
-		return 0;
+		if (this.length() > 0) {
+			return Collections.min(this.set);
+		}
+		else {
+			throw new IntegerSetException("this IntegerSet is empty");
+		}
 	}
 }
