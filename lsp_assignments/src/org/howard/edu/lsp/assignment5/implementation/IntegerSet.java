@@ -3,7 +3,11 @@ package org.howard.edu.lsp.assignment5.implementation;
 import java.util.ArrayList;
 import java.util.Collections;
 
-
+/**
+ * Implementation of a set of integers using an ArrayList.
+ * @author cnico
+ * 
+ */
 public class IntegerSet {
 	
 	private ArrayList<Integer> set;
@@ -184,12 +188,12 @@ public class IntegerSet {
 	 * @return true if this IntegerSet is empty
 	 */
 	boolean isEmpty() {
-		return (this.length() == 0);
+		return this.set.isEmpty();
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Returns String representation of this IntegerSet.
+	 * @return String representation of IntegerSet
 	 */
 	public String toSring() {
 		return this.set.toString();
