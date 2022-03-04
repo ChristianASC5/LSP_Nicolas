@@ -3,13 +3,6 @@ package org.howard.edu.lsp.assignment5.implementation;
 import java.util.ArrayList;
 import java.util.Collections;
 
-//class IntegerSetException extends Exception {
-//    public IntegerSetException(String s)
-//    {
-//        // Call constructor of parent Exception
-//        super(s);
-//    }
-//}
 
 public class IntegerSet {
 	
@@ -43,8 +36,7 @@ public class IntegerSet {
 	 * 
 	 * Returns true if the 2 sets are equal, false otherwise. 
 	 * Two sets are equal if they contain all of the same values in ANY order.
-	 * 
-	 * @param b the IntegerSet this set is being compared to
+	 * @param b the IntegerSet this IntegerSet is being compared to
 	 * @return true if this IntegerSet is equal to IntegerSet b, false otherwise
 	 */
 	public boolean equals(IntegerSet b) {
@@ -62,9 +54,9 @@ public class IntegerSet {
 	}
 	
 	/**
-	 * Returns true if the set contains the value, otherwise false
-	 * @param value
-	 * @return true if this IntegerSet contains the value, otherwise false
+	 * Returns true if the set contains the value, otherwise false.
+	 * @param value the value to be checked for in this IntegerSet.
+	 * @return true if this IntegerSet contains the value, otherwise false.
 	 */
 	public boolean contains(int value) {
 		return this.set.contains(value);
@@ -73,7 +65,7 @@ public class IntegerSet {
 	/**
 	 * Returns the largest item in the set
 	 * @return the largest value in this IntegerSet
-	 * @throws IntegerSetException
+	 * @throws IntegerSetException throws this exception is this IntegerSet is empty
 	 */
 	public int largest() throws IntegerSetException {
 		if (this.length() > 0) {
@@ -87,7 +79,7 @@ public class IntegerSet {
 	/**
 	 * Returns the smallest item in the set
 	 * @return the smallest value in this IntegerSet
-	 * @throws IntegerSetException
+	 * @throws IntegerSetException throws this exception is this IntegerSet is empty
 	 */
 	public int smallest() throws IntegerSetException {
 		if (this.length() > 0) {
@@ -98,21 +90,37 @@ public class IntegerSet {
 		}
 	}
 	
+	/**
+	 * Adds an item to this IntegerSet if the item is not already in the set.
+	 * @param item element to be added to this IntegerSet
+	 */
 	public void add(int item) {
 		if (this.contains(item) == false) {
 			this.set.add(item);
 		}
 	}
 	
+	/**
+	 * Removes an item from this IntegerSet if the item is already in the set.
+	 * @param item element to be removed from this IntegerSet
+	 * @throws IntegerSetException throws this exception is this IntegerSet is empty
+	 */
 	public void remove(int item) throws IntegerSetException {
-		if (this.contains(item) == true) {
-			this.set.remove(item);
+		if (this.length() > 0) {
+			if (this.contains(item) == true) {
+				this.set.remove(item);
+			}
 		}
 		else {
 			throw new IntegerSetException("this set is empty");
 		}
+		
 	}
 	
+	/**
+	 * Modifies this IntegerSet to be the union of itself with another IntegerSet
+	 * @param b the other IntegerSet used to perform this operation
+	 */
 	public void union(IntegerSet b) {
 		if (this.equals(b) == false) {
 			try {	
@@ -129,6 +137,10 @@ public class IntegerSet {
 		}
 	}
 	
+	/**
+	 * Modifies this IntegerSet to be the intersection of itself with another IntegerSet
+	 * @param b the other IntegerSet used to perform this operation
+	 */
 	public void intersection(IntegerSet b) {
 		if (this.equals(b) == false) {
 			try {
@@ -145,14 +157,41 @@ public class IntegerSet {
 		}
 	}
 	
+	/**
+	 * Modifies this IntegerSet to be the set difference of itself with another IntegerSet
+	 * @param b the other IntegerSet used to perform this operation
+	 */
 	public void diff(IntegerSet b) {
 		if (this.equals(b)) {
 			this.clear();
 		}
 		else {
-			
+			try {
+				for (int val = this.smallest(); val <= this.largest(); val++) {
+					if (b.contains(val)) {
+						this.remove(val);
+					}
+				}
+			}
+			catch (IntegerSetException ex) {
+				System.out.println("Exception caught: " + ex);
+			}
 		}
 	}
 	
+	/**
+	 * Returns true if this IntegerSet is empty.
+	 * @return true if this IntegerSet is empty
+	 */
+	boolean isEmpty() {
+		return (this.length() == 0);
+	}
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public String toSring() {
+		return this.set.toString();
+	}
 }
