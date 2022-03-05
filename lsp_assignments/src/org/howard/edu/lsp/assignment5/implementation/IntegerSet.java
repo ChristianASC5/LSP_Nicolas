@@ -116,7 +116,7 @@ public class IntegerSet {
 			}
 		}
 		else {
-			throw new IntegerSetException("this set is empty");
+			throw new IntegerSetException("this IntegerSet is empty");
 		}
 		
 	}
@@ -187,7 +187,7 @@ public class IntegerSet {
 	 * Returns true if this IntegerSet is empty.
 	 * @return true if this IntegerSet is empty
 	 */
-	boolean isEmpty() {
+	public boolean isEmpty() {
 		return this.set.isEmpty();
 	}
 	
@@ -195,7 +195,7 @@ public class IntegerSet {
 	 * Returns String representation of this IntegerSet.
 	 * @return String representation of IntegerSet
 	 */
-	public String toSring() {
+	public String toString() {
 		return this.set.toString();
 	}
 }
