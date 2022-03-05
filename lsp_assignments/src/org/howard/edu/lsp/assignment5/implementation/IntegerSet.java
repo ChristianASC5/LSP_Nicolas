@@ -112,7 +112,7 @@ public class IntegerSet {
 	public void remove(int item) throws IntegerSetException {
 		if (this.length() > 0) {
 			if (this.contains(item) == true) {
-				this.set.remove(item);
+				this.set.remove(new Integer(item));
 			}
 		}
 		else {
