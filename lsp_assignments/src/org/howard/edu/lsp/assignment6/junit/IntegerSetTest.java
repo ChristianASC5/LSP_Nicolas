@@ -147,15 +147,31 @@ class IntegerSetTest extends TestCase{
 		
 	}
 	
-	public void testLargest() {
-		
-	}
+//	@Test
+//	@DisplayName("Test case for largest")
+//	public void testLargest() {
+//		
+//		int max1 = multiValueSet1.largest();
+//		
+//	}
+//	
+//	@Test
+//	@DisplayName("Test case for when largest throws exception")
+//	public void testLargest_THROWS_EXCEPTION() {
+//		
+//		Throwable exception = assertThrows(IntegerSetException.class, () -> emptySet1.largest());
+//		assertEquals("this IntegerSet is empty", exception.getMessage());
+//		
+//	}
 	
-	public void testSmallest() {
-		
-	}
+//	public void testSmallest() {
+//		
+//	}
 	
 	public void testAdd() {
+		emptySet1.add(1);
+		assertTrue(emptySet1.equals(oneValueSet1));
+		assertFalse(emptySet1.equals(emptySet2));
 		
 	}
 	
@@ -173,6 +189,18 @@ class IntegerSetTest extends TestCase{
 	
 	public void testDiff() {
 		
+	}
+	
+	@Test
+	@DisplayName("Test for isEmpty")
+	public void testIsEmpty() {
+		assertTrue(emptySet1.isEmpty());
+		assertTrue(emptySet2.isEmpty());
+		assertFalse(oneValueSet1.isEmpty());
+		assertFalse(oneValueSet2.isEmpty());
+		assertFalse(multiValueSet1.isEmpty());
+		assertFalse(multiValueSet2.isEmpty());
+		assertFalse(multiValueSet3.isEmpty());
 	}
 
 }
